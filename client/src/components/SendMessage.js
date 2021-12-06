@@ -9,7 +9,7 @@ export default function SendMessage() {
 
     async function sendMeme(urlMeme) {
         await db.collection("messages").add({
-            meme: urlMeme,
+            meme: urlMeme.url,
             photoURL:
                 "https://firebasestorage.googleapis.com/v0/b/sei-react-chat.appspot.com/o/K63Ijhfl_400x400.jpeg?alt=media&token=9c285116-63bd-4578-800c-052167b48abb",
             uid: "meme",
@@ -25,8 +25,11 @@ export default function SendMessage() {
                 Accept: "application/json",
             },
         })
-            .then((res) => res.json())
-            .then((data) => sendMeme(data.url));
+            .then((res) => {
+                console.log(res.json);
+                res.json();
+            })
+            .then((data) => sendMeme(data));
     };
 
     async function sendMessage(e) {
