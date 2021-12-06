@@ -19,7 +19,12 @@ export default function SendMessage() {
     }
 
     const memeCommand = () => {
-        fetch("/endpoint")
+        fetch("/endpoint", {
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+        })
             .then((res) => res.json())
             .then((data) => sendMeme(data.url));
     };
