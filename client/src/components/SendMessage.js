@@ -19,17 +19,10 @@ export default function SendMessage() {
     }
 
     const memeCommand = () => {
-        fetch("/endpoint", {
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-        })
-            .then((res) => {
-                console.log(res.json);
-                res.json();
-            })
-            .then((data) => sendMeme(data));
+        axios.get(`/endpoint`).then((res) => {
+            const persons = res.data;
+            sendMeme(persons);
+        });
     };
 
     async function sendMessage(e) {
