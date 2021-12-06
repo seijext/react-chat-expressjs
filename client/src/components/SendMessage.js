@@ -18,11 +18,11 @@ export default function SendMessage() {
         });
     }
 
-    async function memeCommand() {
+    const memeCommand = () => {
         fetch("/endpoint")
             .then((res) => res.json())
             .then((data) => sendMeme(data.url));
-    }
+    };
 
     async function sendMessage(e) {
         e.preventDefault();
